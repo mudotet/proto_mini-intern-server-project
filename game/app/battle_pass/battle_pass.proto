@@ -1,0 +1,28 @@
+syntax = "proto3";
+package game.app;
+option java_package = "com.game.server.proto";
+option java_outer_classname = "BattlePassContract";
+import "game/model/battle_pass.proto";
+import "game/model/resource.proto";
+message BattlePassNodeProto {
+  string node_id = 1;
+  int32 position = 2;
+  int64 required_total_exp = 3;
+  bool premium = 4;
+  game.model.BattlePassRewardProto reward = 5;
+  bool reached = 6;
+  bool claimed = 7;
+  bool claimable = 8;
+}
+message BattlePassResponseProto {
+  string battle_pass_id = 1;
+  int64 starts_at = 2;
+  int64 ends_at = 3;
+  int64 premium_price_gems = 4;
+  game.model.BattlePassProgressProto progress = 5;
+  repeated BattlePassNodeProto nodes = 6;
+  repeated game.model.HeroProto owned_heroes = 7;
+  repeated game.model.Resource resources = 8;
+  // Shared Hero definitions, including unowned Heroes referenced by node rewards.
+  repeated game.model.HeroProto heroes = 9;
+}

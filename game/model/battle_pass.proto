@@ -1,0 +1,34 @@
+syntax = "proto3";
+package game.model;
+option java_package = "com.game.server.proto";
+option java_outer_classname = "BattlePassModel";
+import "game/model/resource.proto";
+
+enum HeroRarity {
+  HERO_RARITY_UNSPECIFIED = 0;
+  BASIC = 1;
+  EPIC = 2;
+  LEGENDARY = 3;
+}
+message BattlePassRewardProto {
+  oneof reward {
+    Resource resource = 1;
+    string hero_id = 2;
+  }
+}
+message HeroProto { string hero_id = 1; HeroRarity rarity = 2; }
+message BattlePassProgressProto {
+  string battle_pass_id = 1;
+  int64 total_exp_bp = 2;
+  bool premium_owned = 3;
+  repeated string claimed_node_ids = 4;
+  // Derived display values; only the fields above are stored as progress.
+  int32 reached_nodes = 5;
+  int64 exp_into_next_node = 6;
+  bool completed = 7;
+}
+message PlayerBattlePassStateProto {
+  BattlePassProgressProto progress = 1;
+  // Hero ownership persists when progress resets for a new pass.
+  repeated string owned_hero_ids = 2;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package game.app;
+option java_package = "com.game.server.proto";
+option java_outer_classname = "BattlePassPurchaseContract";
+import "game/model/battle_pass.proto";
+import "game/model/resource.proto";
+message BattlePassPurchaseRequestProto { string battle_pass_id = 1; }
+message BattlePassPurchaseResponseProto {
+  game.model.BattlePassProgressProto progress = 1;
+  repeated game.model.Resource resources = 2;
+}

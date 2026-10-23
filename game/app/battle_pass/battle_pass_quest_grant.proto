@@ -1,0 +1,16 @@
+syntax = "proto3";
+package game.app;
+option java_package = "com.game.server.proto";
+option java_outer_classname = "BattlePassQuestGrantContract";
+import "game/model/battle_pass.proto";
+// Demo simulation of an award from a trusted Quest system, not a production client API.
+message BattlePassQuestGrantRequestProto {
+  string battle_pass_id = 1;
+  string quest_id = 2;
+  string grant_id = 3;
+  int64 exp_bp = 4;
+}
+message BattlePassQuestGrantResponseProto {
+  game.model.BattlePassProgressProto progress = 1;
+  int64 exp_bp_granted = 2;
+}

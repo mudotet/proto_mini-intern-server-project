@@ -1,0 +1,22 @@
+syntax = "proto3";
+package game.blueprint;
+option java_package = "com.game.server.proto";
+option java_outer_classname = "BattlePassBlueprintContract";
+import "game/model/battle_pass.proto";
+message BattlePassBlueprint {
+  string id = 1;
+  int64 schedule_origin = 2;
+  int64 duration_seconds = 3;
+  int64 exp_per_node = 4;
+  int64 premium_price_gems = 5;
+  repeated BattlePassNodeConfig nodes = 6;
+  repeated HeroDefinition heroes = 7;
+  repeated HeroCompensationRule compensation = 8;
+}
+message BattlePassNodeConfig {
+  string node_id = 1;
+  bool premium = 2;
+  game.model.BattlePassRewardProto reward = 3;
+}
+message HeroDefinition { string hero_id = 1; game.model.HeroRarity rarity = 2; }
+message HeroCompensationRule { game.model.HeroRarity rarity = 1; int64 gems = 2; }
