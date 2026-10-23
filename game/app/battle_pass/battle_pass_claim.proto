@@ -4,7 +4,10 @@ option java_package = "com.game.server.proto";
 option java_outer_classname = "BattlePassClaimContract";
 import "game/model/battle_pass.proto";
 import "game/model/resource.proto";
-message BattlePassClaimRequestProto { string battle_pass_id = 1; string node_id = 2; }
+message BattlePassClaimRequestProto {
+  string battle_pass_id = 1;
+  string node_id = 2;
+}
 message BattlePassClaimResponseProto {
   string node_id = 1;
   game.model.BattlePassRewardProto reward = 2;
